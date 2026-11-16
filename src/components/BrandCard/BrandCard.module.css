@@ -1,0 +1,274 @@
+.card {
+  --ruby: #ff1e42;
+  --metal: #85858c;
+  --metal-dark: rgba(133, 133, 140, 0.15);
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-width: 0;
+  min-height: 390px;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+  overflow: hidden;
+  border: 1px solid var(--metal-dark);
+  border-radius: 24px;
+  background: 
+    radial-gradient(circle at 50% 42%, rgba(133, 133, 140, 0.09), transparent 42%),
+    linear-gradient(160deg, #0d0d10 0%, #050507 100%);
+  box-shadow: 
+    0 18px 42px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  animation: cardEntrance 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: 
+    transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 350ms ease,
+    box-shadow 350ms ease;
+}
+
+.card:hover {
+  z-index: 1;
+  transform: translateY(-8px);
+  border-color: rgba(255, 30, 66, 0.65);
+  box-shadow: 
+    0 28px 56px rgba(0, 0, 0, 0.55),
+    0 0 28px rgba(255, 30, 66, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.shimmerEffect {
+  position: absolute;
+  z-index: 0;
+  inset: -30% auto -30% -80%;
+  width: 55%;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.055),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 750ms ease;
+}
+
+.card:hover .shimmerEffect {
+  left: 130%;
+}
+
+.cardTop {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.idx {
+  color: var(--ruby);
+  font-family: "Syncopate", sans-serif;
+  font-size: 0.8rem;
+  text-shadow: 0 0 10px rgba(255, 30, 66, 0.4);
+}
+
+.origin {
+  color: var(--metal);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+}
+
+.logoArea {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(42vw, 160px);
+  aspect-ratio: 1;
+  flex: 0 0 auto;
+  place-items: center;
+  margin: 28px 0 24px;
+}
+
+.ringAnim {
+  position: absolute;
+  inset: 0;
+  border: 1px dashed rgba(133, 133, 140, 0.38);
+  border-radius: 50%;
+  animation: ringRotation 24s linear infinite;
+  transition: 
+    border-color 400ms ease,
+    box-shadow 400ms ease,
+    animation-duration 400ms ease;
+}
+
+.ringAnim::before,
+.ringAnim::after {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  content: "";
+}
+
+.ringAnim::before {
+  top: 14%;
+  left: 16%;
+  background: var(--ruby);
+  box-shadow: 0 0 12px rgba(255, 30, 66, 0.8);
+}
+
+.ringAnim::after {
+  right: 12%;
+  bottom: 18%;
+  background: var(--metal);
+  box-shadow: 0 0 10px rgba(133, 133, 140, 0.55);
+}
+
+.card:hover .ringAnim {
+  border-color: rgba(255, 30, 66, 0.68);
+  box-shadow: 0 0 24px rgba(255, 30, 66, 0.13);
+  animation-duration: 10s;
+}
+
+.logoArea img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 56%;
+  height: 56%;
+  object-fit: contain;
+  filter: grayscale(1) brightness(1.65);
+  transition: 
+    filter 400ms ease,
+    transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .logoArea img {
+  transform: scale(1.12) rotate(-3deg);
+  filter: grayscale(0.15) brightness(1.15);
+}
+
+.details {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin-top: auto;
+  text-align: center;
+}
+
+.details h2 {
+  margin: 0;
+  color: #f5f5f6;
+  font-family: "Syncopate", sans-serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 2px;
+  overflow-wrap: anywhere;
+}
+
+.line {
+  width: 36px;
+  height: 2px;
+  margin: 14px auto;
+  background: var(--metal);
+  transition: 
+    width 400ms ease,
+    background-color 400ms ease,
+    box-shadow 400ms ease;
+}
+
+.card:hover .line {
+  width: min(90px, 40%);
+  background: var(--ruby);
+  box-shadow: 0 0 12px rgba(255, 30, 66, 0.7);
+}
+
+.details p {
+  margin: 0;
+  color: var(--metal);
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 2px;
+  overflow-wrap: anywhere;
+}
+
+@keyframes ringRotation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 700px) {
+  .card {
+    min-height: 360px;
+    padding: 28px;
+    border-radius: 20px;
+  }
+
+  .logoArea {
+    width: min(44vw, 150px);
+    margin: 24px 0 20px;
+  }
+
+  .details h2 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .card {
+    min-height: 330px;
+    padding: 22px;
+    border-radius: 16px;
+  }
+
+  .origin {
+    font-size: 0.58rem;
+    letter-spacing: 2px;
+  }
+
+  .logoArea {
+    width: min(46vw, 132px);
+    margin: 22px 0 18px;
+  }
+
+  .details h2 {
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+  }
+
+  .details p {
+    font-size: 0.62rem;
+    letter-spacing: 1.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .ringAnim,
+  .shimmerEffect,
+  .logoArea img,
+  .line {
+    animation: none;
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
