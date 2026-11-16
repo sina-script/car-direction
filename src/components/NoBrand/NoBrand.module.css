@@ -1,5 +1,4 @@
 .wrapper {
-  /* این بخش باعث می‌شود بدون تغییر در فایل‌های دیگر، کامپوننت وسط Grid قرار بگیرد */
   grid-column: 1 / -1; 
   display: flex;
   justify-content: center;
@@ -34,7 +33,6 @@
   animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
-/* افکت گرید در پس‌زمینه */
 .emptyState::before {
   content: "";
   position: absolute;
@@ -163,7 +161,6 @@
   animation: moveProgress 3s ease-in-out infinite;
 }
 
-/* انیمیشن‌ها */
 @keyframes rotate {
   to { transform: rotate(360deg); }
 }
@@ -183,7 +180,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ریسپانسیو */
 @media (max-width: 768px) {
   .emptyState {
     max-width: 95%;

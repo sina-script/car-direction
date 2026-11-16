@@ -4,7 +4,6 @@ export default function NoBrand() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.emptyState}>
-        {/* افکت‌های نوری پس‌زمینه */}
         <div className={styles.glowReflect}></div>
         
         <div className={styles.visualContainer}>
