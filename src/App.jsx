@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import carsList from "./../data/cars";
 import BrandCard from "./components/BrandCard/BrandCard";
+import NoBrand from "./components/NoBrand/NoBrand";
 
 export default function App() {
   const [selectedCountry, setSelectedCountry] = useState("unselected");
@@ -53,7 +54,7 @@ export default function App() {
                   .category.map((brand) => {
                     return <BrandCard key={brand.step} {...brand}></BrandCard>;
                   })
-              : ""}
+              : <NoBrand></NoBrand>}
           </div>
         </section>
       </div>

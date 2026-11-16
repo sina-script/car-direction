@@ -1,0 +1,213 @@
+.wrapper {
+  /* این بخش باعث می‌شود بدون تغییر در فایل‌های دیگر، کامپوننت وسط Grid قرار بگیرد */
+  grid-column: 1 / -1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 40px 0;
+  perspective: 1000px;
+}
+
+.emptyState {
+  --ruby: #ff1e42;
+  --metal: #85858c;
+  --bg-dark: #050507;
+
+  position: relative;
+  width: 100%;
+  max-width: 850px;
+  min-height: 480px;
+  background: 
+    radial-gradient(circle at 50% 0%, rgba(255, 30, 66, 0.12), transparent 50%),
+    linear-gradient(180deg, #0d0d10 0%, var(--bg-dark) 100%);
+  border: 1px solid rgba(133, 133, 140, 0.15);
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 
+    0 40px 80px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* افکت گرید در پس‌زمینه */
+.emptyState::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(133, 133, 140, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(133, 133, 140, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+  mask-image: radial-gradient(circle at 50% 50%, black, transparent 90%);
+}
+
+.visualContainer {
+  position: relative;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainOrbit {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border: 1px solid rgba(133, 133, 140, 0.2);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scanner {
+  position: absolute;
+  inset: -2px;
+  border: 2px solid transparent;
+  border-top-color: var(--ruby);
+  border-radius: 50%;
+  animation: rotate 3s linear infinite;
+}
+
+.core {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 30, 66, 0.05);
+  border: 1px solid rgba(255, 30, 66, 0.3);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(45deg);
+  box-shadow: 0 0 30px rgba(255, 30, 66, 0.1);
+}
+
+.emblem span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--ruby);
+  transform: rotate(-45deg);
+  box-shadow: 0 0 10px var(--ruby);
+}
+
+.corePulse {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid var(--ruby);
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.textFrame {
+  text-align: center;
+  z-index: 2;
+  padding: 0 20px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(133, 133, 140, 0.1);
+  border: 1px solid rgba(133, 133, 140, 0.2);
+  border-radius: 100px;
+  color: var(--metal);
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.heroTitle {
+  font-family: "Syncopate", sans-serif;
+  font-size: clamp(1.5rem, 5vw, 2.8rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.rubyText {
+  color: var(--ruby);
+  text-shadow: 0 0 40px rgba(255, 30, 66, 0.4);
+}
+
+.subText {
+  color: var(--metal);
+  font-size: 0.95rem;
+  max-width: 450px;
+  margin: 15px auto 0;
+  line-height: 1.6;
+}
+
+.loaderLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.progress {
+  width: 40%;
+  height: 100%;
+  background: var(--ruby);
+  box-shadow: 0 0 15px var(--ruby);
+  animation: moveProgress 3s ease-in-out infinite;
+}
+
+/* انیمیشن‌ها */
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ping {
+  75%, 100% { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes moveProgress {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(150%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ریسپانسیو */
+@media (max-width: 768px) {
+  .emptyState {
+    max-width: 95%;
+    min-height: 400px;
+    padding: 40px 20px;
+  }
+  
+  .mainOrbit {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .core {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 1.8rem;
+  }
+  
+  .subText {
+    font-size: 0.85rem;
+  }
+}
