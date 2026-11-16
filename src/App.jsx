@@ -1,6 +1,10 @@
 import "./App.css";
+import carsList from "./../data/cars"
+import { useState } from "react";
 
 export default function App() {
+  const [selectedCountry,setSelectedCountry]=useState("unselected")
+
   return (
     <div className="motor-wrap">
       <div className="glow-top"></div>
@@ -13,11 +17,19 @@ export default function App() {
           <div className="select-mega-wrapper">
             <div className="select-inner-panel">
               <div className="panel-status"></div>
-              <select id="origin-filter" className="real-black-select">
-                <option value="all">-- ALL LEGENDS --</option>
-                <option value="german">GERMAN ENGINEERING</option>
-                <option value="italian">ITALIAN DESIGN</option>
+
+
+              <select id="origin-filter" className="real-black-select" value={selectedCountry} onChange={(event)=>{
+                  setSelectedCountry(event.target.value)
+              }}>
+                <option value="unselected">Choose one  country</option>
+                {carsList.map((country)=>{
+                  return <option value={country.title}>{country.title}</option>
+                })}
               </select>
+
+
+
               <div className="select-arrow"></div>
             </div>
             <div className="panel-shadow"></div>
