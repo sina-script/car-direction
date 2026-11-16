@@ -15,7 +15,7 @@ export default function App() {
         <header className="header">
           <div className="brand-tag">PREMIUM ARCHIVE</div>
           <h1 className="title">
-            BRANDS <span className="ruby-stroke">UNIT</span>
+             CAR <span className="ruby-stroke">PATH</span>
           </h1>
 
           <div className="select-mega-wrapper">
@@ -52,9 +52,9 @@ export default function App() {
                     return country.title == selectedCountry;
                   })
                   .category.map((brand) => {
-                    return <BrandCard key={brand.step} {...brand}></BrandCard>;
+                    return <BrandCard key={brand.step} country={selectedCountry} {...brand} c></BrandCard>;
                   })
-              : <NoBrand></NoBrand>}
+              : <NoBrand></NoBrand>} 
           </div>
         </section>
       </div>

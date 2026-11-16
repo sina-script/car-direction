@@ -1,28 +1,29 @@
 import styles from "./BrandCard.module.css";
 
-export default function BrandCard() {
+ function BrandCard({country,brand,step,img}) {
   return (
     <article className={styles.card} data-origin="italian">
       <div className={styles.shimmerEffect}></div>
 
       <div className={styles.cardTop}>
-        <span className={styles.idx}>02</span>
-        <span className={styles.origin}>ITALY</span>
+        <span className={styles.idx}>{step}</span>
+        <span className={styles.origin}>{country}</span>
       </div>
 
       <div className={styles.logoArea}>
         <div className={styles.ringAnim}></div>
         <img 
-          src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Ferrari-Logo.svg/800px-Ferrari-Logo.svg.png" 
-          alt="Ferrari" 
+          src={img} 
+          alt="Brand Image" 
         />
       </div>
 
       <div className={styles.details}>
-        <h2>FERRARI</h2>
+        <h2>{brand}</h2>
         <div className={styles.line}></div>
-        <p>MARANELLO ORIGIN</p>
       </div>
     </article>
   );
 }
+
+export default BrandCard;
